@@ -16,7 +16,7 @@ def affiche(g):
                 up()
                 goto(50*c,50*l)
                 down()
-                circle(20,360)
+                rond_gris()
             elif g[l][c] ==1:
                 up()
                 goto(50*c,50*l)
@@ -26,11 +26,17 @@ def affiche(g):
                 up()
                 goto(50*c,50*l)
                 down()
-                rond_jaune()
+                rond_bleu()
         print("\n",end="")
 #Place un rond jaune     
-def rond_jaune():
-    fillcolor('yellow')
+def rond_bleu():
+    fillcolor('blue')
+    begin_fill()
+    circle(20,360)
+    end_fill()
+
+def rond_gris():
+    fillcolor('grey')
     begin_fill()
     circle(20,360)
     end_fill()
@@ -42,20 +48,22 @@ def rond_rouge():
     circle(20,360)
     end_fill()
 
- #Vérifie si le coup peut être jouer dans la colonne   
+ #Vérifie si le coup peut être jouer dans la colonne
+""" 
 def coup_possible(g,c):
     c -= 1
-    print(g[5][c])
+    print(g[0][c])
     if g[5][c] == ".":
         return True
     else:
         return False
+
 #Terminer Jouer
 def jouer(g,j,c):
     c -= 1
     if coup_possible(g,c):
         for i in range(6):
-            if g[i][c] ==
+            if g[i][c] == 
 #Faire Horiz
 def horiz(g,j,l,c):
 
@@ -78,12 +86,12 @@ def victoire(g,j):
 def math_nul(g,j):
 
 #Faire Programme principale 
-
+"""
 
 # Variable Test
-g = [[1,3,4,5,4,7], [1,".",".",4,5,4], [1,4,6,1,4,5], [1,".",".",4,5,4], [1,".",".",4,5,4], [1,".",".",4,5,4]]
+g=[[0,1,0,1,0,1,0],[1,2,1,2,1,2,1],[0,1,0,1,0,1,0],[1,2,1,2,1,2,1],[0,1,0,1,0,1,0],[1,2,1,2,1,2,1]]
         
-print(coup_possible(g,1))
+affiche(g)
 
 
 
