@@ -50,9 +50,12 @@ def coup_possible(g,c):
         return True
     else:
         return False
-#Faire Jouer
+#Terminer Jouer
 def jouer(g,j,c):
-    
+    c -= 1
+    if coup_possible(g,c):
+        for i in range(6):
+            if g[i][c] ==
 #Faire Horiz
 def horiz(g,j,l,c):
 
