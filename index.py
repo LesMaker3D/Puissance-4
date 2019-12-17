@@ -16,7 +16,7 @@ def affiche(g):
                 up()
                 goto(50*c,50*l)
                 down()
-                rond_gris()
+                carrer_gris()
             elif g[l][c] ==1:
                 up()
                 goto(50*c,50*l)
@@ -35,10 +35,13 @@ def rond_bleu():
     circle(20,360)
     end_fill()
 
-def rond_gris():
+def carrer_gris():
     fillcolor('grey')
     begin_fill()
-    circle(20,360)
+    backward(20)
+    for i in range(4):
+        forward(40)
+        left(90)
     end_fill()
 
 #place un rond rouge
@@ -77,45 +80,117 @@ def jouer(g,j,c):
     return g
 
 #Horizontale
-def horiz(g,j,l,c):
+def horiz(g,j):
     compteur = 0
+    l = 0
     for i in range(6):
         for k in range(7):
             if g[i][k] == j:
+                if l == i:
+                    l = i
                 compteur += 1
-                print(compteur)
                 if compteur == 4:
                     return "Victoire du joueur",j
             else:
                 compteur = 0
+#Horizontale V2 sans boucle
+def horizv2(g,j,l,c):
+        if g[l][c] == j and g[l][c-1]== j and g[l][c-2]== j and g[l][c-3]== j: # horizontal gauche
+            return True
+        elif g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j: #  horizontal droite
+            return True
+        else:
+            return False
             
-"""
-#Faire Vert
-def vert(g,j,l,c):
 
-#faire diag haut
+#Verticale
+def vert(g,j):
+    compteur = 0
+    l = 0
+    for i in range(6):
+        for k in range(5):
+            print("i:",i, "k",k)
+            if g[k][i] == j:
+                if l == i:
+                    l = i
+                    compteur += 1
+                    print("compteur",compteur)
+                if compteur == 4:
+                    return True
+            else:
+                compteur = 0
+                
+#Verticale 2 sans boucle
+def vert2(g,j,l,c):
+        if g[l][c] == j and g[l-1][c]== j and g[l-2][c]== j and g[l-3][c]== j: # vertical bas
+            return True
+        elif g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j: #  vertical haut
+            return True
+        else:
+            return False
+
+#diagonale haut
 def diag_haut(g,j,l,c):
+    if l < 3:
+        if g[l][c] == j and g[l+1][c-1]== j and g[l+2][c-2]== j and g[l+3][c-3]== j: # diagonales haut gauche
+            return True
+        elif g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j: # diagonales haut droite
+            return True
+        else:
+            return False
+    else:
+            return False
 
-#Faire diag bas
 
-def diag_bas(g,j,l,c)
+# diag bas
+
+def diag_bas(g,j,l,c):
+    if l > 3:
+        if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j: # diagonales haut gauche
+            return True
+        elif g[l][c] == j and g[l-1][c+1]== j and g[l-2][c+2]== j and g[l-3][c+3]== j: # diagonales bas droite
+            return True
+        else:
+            return False
+    else:
+            return False
+
+
+
+
+
 
 #Faire fonction victoire
 
-def victoire(g,j):
+def victoire(g,j,l,c):
+    if diag_bas(g,j,l,c):
+        print("Félicitation vous avez gagné !1")
+    elif diag_haut(g,j,l,c):
+        print("Félicitation vous avez gagné !2")
+    elif vert(g,j):
+        print("Félicitation vous avez gagné !3")
+    elif horiz(g,j):
+        print("Félicitation vous avez gagné !4")
 
 #Faire fonction match nul
 
 def math_nul(g,j):
+    compteur = 0
+    for i in range(7):
+        if coup_possible(g,i):
+            compteur += 1
+    if compteur == 7:
+        print("Match Nul")
+
 
 #Faire Programme principale
-"""
+
 
 # Variable Test
-g=[[2,1,1,1,1,2,2],[1,2,2,1,2,1,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,2,1,1],[0,2,0,0,1,2,0]]
+g=[[1,1,0,1,1,2,1],[1,2,1,2,1,2,1],[1,2,1,2,1,2,1],[1,1,2,1,2,1,2],[2,1,2,1,2,1,2],[2,1,2,1,2,2,1]]
 
-print(horiz(g,1,1,1))
-
+victoire(g,1,4,1)
+affiche(g)
 
 
 
