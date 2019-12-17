@@ -28,7 +28,7 @@ def affiche(g):
                 down()
                 rond_rouge()
         print("\n",end="")
-#Place un rond bleu
+#Place un rond jaune
 def rond_bleu():
     fillcolor('blue')
     begin_fill()
