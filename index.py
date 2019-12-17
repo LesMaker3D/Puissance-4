@@ -21,14 +21,14 @@ def affiche(g):
                 up()
                 goto(50*c,50*l)
                 down()
-                rond_rouge()
+                rond_bleu()
             elif g[l][c]==2:
                 up()
                 goto(50*c,50*l)
                 down()
-                rond_bleu()
+                rond_rouge()
         print("\n",end="")
-#Place un rond jaune     
+#Place un rond jaune
 def rond_bleu():
     fillcolor('blue')
     begin_fill()
@@ -41,14 +41,14 @@ def rond_gris():
     circle(20,360)
     end_fill()
 
-#place un rond rouge 
+#place un rond rouge
 def rond_rouge():
     fillcolor('red')
     begin_fill()
     circle(20,360)
     end_fill()
 
- #Vérifie si le coup peut être jouer dans la colonne
+ #
 
 def coup_possible(g,c):
     c -= 1
@@ -57,13 +57,13 @@ def coup_possible(g,c):
     else:
         return False
 
-#Terminer Jouer
+#Jouer
 def jouer(g,j,c):
     if coup_possible(g,c):
 
         for i in range(6):
             o = 5-i
-            if g[o][c-1] == 0: 
+            if g[o][c-1] == 0:
                 if j == 1:
                     g[o][c-1] = 1
                     print("C'est dans if J1")
@@ -75,10 +75,21 @@ def jouer(g,j,c):
     else:
         return "Pas jouable"
     return g
-"""
-#Faire Horiz
-def horiz(g,j,l,c):
 
+#Horizontale
+def horiz(g,j,l,c):
+    compteur = 0
+    for i in range(6):
+        for k in range(7):
+            if g[i][k] == j:
+                compteur += 1
+                print(compteur)
+                if compteur == 4:
+                    return "Victoire du joueur",j
+            else:
+                compteur = 0
+            
+"""
 #Faire Vert
 def vert(g,j,l,c):
 
@@ -97,13 +108,13 @@ def victoire(g,j):
 
 def math_nul(g,j):
 
-#Faire Programme principale 
+#Faire Programme principale
 """
 
 # Variable Test
-g=[[2,1,1,1,2,1,1],[1,2,2,2,1,2,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,1,1,1],[0,2,0,0,1,2,0]]
-        
-print(jouer(g,1,3))
+g=[[2,1,1,1,1,2,2],[1,2,2,1,2,1,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,2,1,1],[0,2,0,0,1,2,0]]
+
+print(horiz(g,1,1,1))
 
 
 
