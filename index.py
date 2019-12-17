@@ -52,18 +52,30 @@ def rond_rouge():
 
 def coup_possible(g,c):
     c -= 1
-    print(g[5][c])
     if g[5][c] == 0:
         return True
     else:
         return False
-"""
+
 #Terminer Jouer
 def jouer(g,j,c):
-    c -= 1
     if coup_possible(g,c):
+
         for i in range(6):
-            if g[i][c] == 
+            o = 5-i
+            if g[o][c-1] == 0: 
+                if j == 1:
+                    g[o][c-1] = 1
+                    print("C'est dans if J1")
+                    print(g[o][c-1])
+                else:
+                    g[o][c-1] = 2
+                    print("C'est dans if J2")
+                    print(g[o][c-1])
+    else:
+        return "Pas jouable"
+    return g
+"""
 #Faire Horiz
 def horiz(g,j,l,c):
 
@@ -89,9 +101,9 @@ def math_nul(g,j):
 """
 
 # Variable Test
-g=[[2,1,1,1,2,1,1],[1,2,1,2,1,2,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,1,1,1],[0,2,0,0,1,2,0]]
+g=[[2,1,1,1,2,1,1],[1,2,2,2,1,2,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,1,1,1],[0,2,0,0,1,2,0]]
         
-print(coup_possible(g,7))
+print(jouer(g,1,3))
 
 
 
