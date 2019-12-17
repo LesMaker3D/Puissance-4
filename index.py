@@ -49,15 +49,15 @@ def rond_rouge():
     end_fill()
 
  #Vérifie si le coup peut être jouer dans la colonne
-""" 
+
 def coup_possible(g,c):
     c -= 1
-    print(g[0][c])
-    if g[5][c] == ".":
+    print(g[5][c])
+    if g[5][c] == 0:
         return True
     else:
         return False
-
+"""
 #Terminer Jouer
 def jouer(g,j,c):
     c -= 1
@@ -89,9 +89,9 @@ def math_nul(g,j):
 """
 
 # Variable Test
-g=[[0,1,0,1,0,1,0],[1,2,1,2,1,2,1],[0,1,0,1,0,1,0],[1,2,1,2,1,2,1],[0,1,0,1,0,1,0],[1,2,1,2,1,2,1]]
+g=[[2,1,1,1,2,1,1],[1,2,1,2,1,2,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,1,1,1],[0,2,0,0,1,2,0]]
         
-affiche(g)
+print(coup_possible(g,7))
 
 
 
