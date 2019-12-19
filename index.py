@@ -80,81 +80,26 @@ def jouer(g,j,c):
     return g
 
 #Horizontale
-def horiz(g,j):
-    compteur = 0
-    l = 0
-    for i in range(6):
-        for k in range(7):
-            if g[i][k] == j:
-                if l == i:
-                    l = i
-                compteur += 1
-                if compteur == 4:
-                    return "Victoire du joueur",j
-            else:
-                compteur = 0
-#Horizontale V2 sans boucle
-def horizv2(g,j,l,c):
-        if g[l][c] == j and g[l][c-1]== j and g[l][c-2]== j and g[l][c-3]== j: # horizontal gauche
+def horiz(g,j,l,c):
+    if c < 4: 
+        if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
             return True
-        elif g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j: #  horizontal droite
-            return True
-        else:
-            return False
-            
 
-#Verticale
-def vert(g,j):
-    compteur = 0
-    l = 0
-    for i in range(6):
-        for k in range(5):
-            print("i:",i, "k",k)
-            if g[k][i] == j:
-                if l == i:
-                    l = i
-                    compteur += 1
-                    print("compteur",compteur)
-                if compteur == 4:
-                    return True
-            else:
-                compteur = 0
+
+def vert(g,j,l,c):
+    if l < 3:
+        if g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j:
+            return True
                 
-#Verticale 2 sans boucle
-def vert2(g,j,l,c):
-        if g[l][c] == j and g[l-1][c]== j and g[l-2][c]== j and g[l-3][c]== j: # vertical bas
-            return True
-        elif g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j: #  vertical haut
-            return True
-        else:
-            return False
-
-#diagonale haut
 def diag_haut(g,j,l,c):
     if l < 3:
-        if g[l][c] == j and g[l+1][c-1]== j and g[l+2][c-2]== j and g[l+3][c-3]== j: # diagonales haut gauche
-            return True
-        elif g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j: # diagonales haut droite
-            return True
-        else:
-            return False
-    else:
-            return False
-
-
-# diag bas
-
+    if g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j:
+        return True
+    
 def diag_bas(g,j,l,c):
-    if l > 3:
-        if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j: # diagonales haut gauche
+    if l > 2:
+        if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j:
             return True
-        elif g[l][c] == j and g[l-1][c+1]== j and g[l-2][c+2]== j and g[l-3][c+3]== j: # diagonales bas droite
-            return True
-        else:
-            return False
-    else:
-            return False
-
 
 
 
