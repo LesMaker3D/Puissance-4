@@ -9,7 +9,7 @@ def grille_vide():
 #Affiche la grille
 def affiche(g):
     clear()
-    speed(0)
+    speed(0
     for l in range(6):
         for c in range(7):
             if g[l][c] ==0:
@@ -61,6 +61,7 @@ def coup_possible(g,c):
 
 #Jouer
 def jouer(g,j,c):
+
     o=0
     while g[o][c-1] != 0 or o > 6:
         o +=1
@@ -69,6 +70,7 @@ def jouer(g,j,c):
             
             
                     
+
 
 #Horizontale
 def horiz(g,j,l,c):
