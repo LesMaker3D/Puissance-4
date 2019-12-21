@@ -4,15 +4,14 @@ from turtle import *
 
 #Crée une grille vide
 def grille_vide():
-    g=[[0]*7]*6
-    return g
+    return [[0]*7 for i in range(6)]
 
 #Affiche la grille
 def affiche(g):
-    speed(0)
+    speed("fastest")
     for l in range(6):
         for c in range(7):
-            if g[l][c] == 0:
+            if g[l][c] ==0:
                 up()
                 goto(50*c,50*l)
                 down()
@@ -27,7 +26,7 @@ def affiche(g):
                 goto(50*c,50*l)
                 down()
                 rond_rouge()
-        print("\n",end="")
+        
 #Place un rond bleu
 def rond_bleu():
     fillcolor('blue')
@@ -62,14 +61,12 @@ def coup_possible(g,c):
 
 #Jouer
 def jouer(g,j,c):
-    if coup_possible(g,c):
+    for i in range(6):
+        o = 5-i
+        if g[o][c-1] == 0:
+            g[o][c-1] = j
+                    
 
-        for i in range(6):
-            o = 5-i
-            if g[o][c-1] == 0:
-                if j == 1:
-                    g[o][c-1] = 1
-                    print("C'est dans if J1")
                     print(g[o][c-1])
                 else:
                     g[o][c-1] = 2
