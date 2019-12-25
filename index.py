@@ -67,6 +67,21 @@ def jouer(g,j,c):
         o +=1
     g[o][c-1] = j
             
+#Faire Vert
+def vert(g,j,l,c):
+
+#faire diag haut
+def diag_haut(g,j,l,c):
+    if l < 3:
+        if g[l][c] == j and g[l+1][c-1]== j and g[l+2][c-2]== j and g[l+3][c-3]== j: # diagonales haut gauche
+            return True
+        elif g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j: # diagonales haut droite
+            return True
+        else:
+            return False
+    else:
+            return False
+
             
             
                     
