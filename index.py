@@ -104,10 +104,10 @@ def match_nul(g,j):
             return False
         
 def coup_joueur(g,j):
-    c=int(input("entrez une colonne : "))
+    c=int(numinput("colonne","entrez une colonne : "))
     while coup_possible(g,c) == False or c < 1 or c > 7:
         print("Coup impossible !")
-        c=int(input("entrez une colonne : "))
+        c=int(numinput("colonne","entrez une colonne : "))
     jouer(g,j,c)
 
 
