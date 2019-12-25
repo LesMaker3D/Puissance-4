@@ -4,19 +4,19 @@ from turtle import *
 
 #Crée une grille vide
 def grille_vide():
-    g=[[0]*7]*6
-    return g
+    return [[0]*7 for i in range(6)]
 
 #Affiche la grille
 def affiche(g):
-    speed(0)
+    clear()
+    speed(0
     for l in range(6):
         for c in range(7):
-            if g[l][c] == 0:
+            if g[l][c] ==0:
                 up()
                 goto(50*c,50*l)
                 down()
-                rond_gris()
+                carrer_gris()
             elif g[l][c] ==1:
                 up()
                 goto(50*c,50*l)
@@ -27,7 +27,7 @@ def affiche(g):
                 goto(50*c,50*l)
                 down()
                 rond_rouge()
-        print("\n",end="")
+        
 #Place un rond bleu
 def rond_bleu():
     fillcolor('blue')
@@ -35,10 +35,13 @@ def rond_bleu():
     circle(20,360)
     end_fill()
 
-def rond_gris():
+def carrer_gris():
     fillcolor('grey')
     begin_fill()
-    circle(20,360)
+    backward(20)
+    for i in range(4):
+        forward(40)
+        left(90)
     end_fill()
 
 #place un rond rouge
@@ -52,44 +55,18 @@ def rond_rouge():
 
 def coup_possible(g,c):
     c -= 1
+   
     if g[5][c] == 0:
         return True
-    else:
-        return False
 
 #Jouer
 def jouer(g,j,c):
-    if coup_possible(g,c):
 
-        for i in range(6):
-            o = 5-i
-            if g[o][c-1] == 0:
-                if j == 1:
-                    g[o][c-1] = 1
-                    print("C'est dans if J1")
-                    print(g[o][c-1])
-                else:
-                    g[o][c-1] = 2
-                    print("C'est dans if J2")
-                    print(g[o][c-1])
-    else:
-        return "Pas jouable"
-    return g
-
-#Horizontale
-def horiz(g,j,l,c):
-    compteur = 0
-    for i in range(6):
-        for k in range(7):
-            if g[i][k] == j:
-                compteur += 1
-                print(compteur)
-                if compteur == 4:
-                    return "Victoire du joueur",j
-            else:
-                compteur = 0
+    o=0
+    while g[o][c-1] != 0 or o > 6:
+        o +=1
+    g[o][c-1] = j
             
-"""
 #Faire Vert
 def vert(g,j,l,c):
 
@@ -105,27 +82,54 @@ def diag_haut(g,j,l,c):
     else:
             return False
 
+            
+            
+                    
 
-#Faire diag bas
 
-def diag_bas(g,j,l,c)
+#Horizontale
+def horiz(g,j,l,c):
+    if c < 4: 
+        if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
+            return True
 
-#Faire fonction victoire
 
+def vert(g,j,l,c):
+    if l < 3:
+        if g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j:
+            return True
+                
+def diag_haut(g,j,l,c):
+    if l < 3:
+        if g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j:
+            return True
+    
+def diag_bas(g,j,l,c):
+    if l > 2:
+        if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j:
+            return True
+        
 def victoire(g,j):
+    return False
+       
+        
+def match_nul(g,j):
+    for c in range(7):
+        if g[5][c]==0:
+            return False
+        
+def coup_joueur(g,j):
+    c=int(numinput("colonne","entrez une colonne : "))
+    while coup_possible(g,c) == False or c < 1 or c > 7:
+        print("Coup impossible !")
+        c=int(numinput("colonne","entrez une colonne : "))
+    jouer(g,j,c)
 
-#Faire fonction match nul
 
-def math_nul(g,j):
-
-#Faire Programme principale
-"""
-
-# Variable Test
-g=[[2,1,1,1,1,2,2],[1,2,2,1,2,1,1],[0,1,2,1,2,1,2],[1,2,1,2,1,2,1],[0,1,2,1,2,1,1],[0,2,0,0,1,2,0]]
-
-print(horiz(g,1,1,1))
-
-
-
-
+g=grille_vide()
+affiche(g)
+j=1
+while victoire(g,j) == False and match_nul(g,j)==False:
+    coup_joueur(g,j)
+    affiche(g)
+    j=3-j
