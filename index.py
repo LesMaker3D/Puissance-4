@@ -9,15 +9,15 @@ def grille_vide():
 #Affiche la grille
 def affiche(g):
     clear()
-    speed(0
+    speed(0)
     for l in range(6):
         for c in range(7):
-            if g[l][c] ==0:
-                up()
-                goto(50*c,50*l)
-                down()
-                carrer_gris()
-            elif g[l][c] ==1:
+#             if g[l][c] ==0:
+#                 up()
+#                 goto(50*c,50*l)
+#                 down()
+#                 carrer_gris()
+            if g[l][c] ==1:
                 up()
                 goto(50*c,50*l)
                 down()
@@ -54,63 +54,44 @@ def rond_rouge():
  #
 
 def coup_possible(g,c):
-    c -= 1
-   
+    c -= 1   
     if g[5][c] == 0:
         return True
 
 #Jouer
 def jouer(g,j,c):
-
     o=0
     while g[o][c-1] != 0 or o > 6:
         o +=1
     g[o][c-1] = j
             
-#Faire Vert
-def vert(g,j,l,c):
-
-#faire diag haut
-def diag_haut(g,j,l,c):
-    if l < 3:
-        if g[l][c] == j and g[l+1][c-1]== j and g[l+2][c-2]== j and g[l+3][c-3]== j: # diagonales haut gauche
-            return True
-        elif g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j: # diagonales haut droite
-            return True
-        else:
-            return False
-    else:
-            return False
-
             
             
                     
 
-
 #Horizontale
 def horiz(g,j,l,c):
-    if c < 4: 
-        if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
-            return True
+    if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
+        return True
 
 
 def vert(g,j,l,c):
-    if l < 3:
-        if g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j:
-            return True
+    if g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j:
+        return True
                 
 def diag_haut(g,j,l,c):
-    if l < 3:
-        if g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j:
-            return True
+    if g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j:
+        return True
     
 def diag_bas(g,j,l,c):
-    if l > 2:
-        if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j:
-            return True
+    if g[l][c] == j and g[l-1][c-1]== j and g[l-2][c-2]== j and g[l-3][c-3]== j:
+        return True
         
 def victoire(g,j):
-    return False
+    for l in range(6):
+        for c in range(7):
+            if horiz(g,j,l,c)==True or vert(g,j,l,c)==True or diag_haut(g,j,l,c)==True or diag_bas(g,j,l,c)==True:
+                return True
        
         
 def match_nul(g,j):
@@ -119,17 +100,19 @@ def match_nul(g,j):
             return False
         
 def coup_joueur(g,j):
-    c=int(numinput("colonne","entrez une colonne : "))
+    c=int(numinput(("joueur",j),"entrez une colonne : "))
     while coup_possible(g,c) == False or c < 1 or c > 7:
         print("Coup impossible !")
-        c=int(numinput("colonne","entrez une colonne : "))
+        c=int(numinput(("joueur",j),"entrez une colonne : "))
     jouer(g,j,c)
 
 
 g=grille_vide()
 affiche(g)
-j=1
-while victoire(g,j) == False and match_nul(g,j)==False:
+j=2
+while victoire(g,j) != True and match_nul(g,j)==False:
+    j=3-j
     coup_joueur(g,j)
     affiche(g)
-    j=3-j
+    
+print("victoire du joueur",j,"!")
