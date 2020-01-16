@@ -6,37 +6,49 @@ from turtle import *
 def grille_vide():
     return [[0]*7 for i in range(6)]
 
-#Affiche la grille
-def affiche(g):
-    clear()
-    speed(0)
+def grille_grise(g):
     for l in range(6):
         for c in range(7):
-           # if g[l][c] ==0:
-               # up()
-               # goto(50*c,50*l)
-                #down()
-                #carrer_gris()
-            #el
+            carre_gris(c,l)
+
+#Affiche la grille
+def affiche(g):
+    for l in range(6):
+        for c in range(7):
             if g[l][c] ==1:
-                up()
-                goto(50*c,50*l)
-                down()
-                rond_bleu()
+                carre_blanc(c,l)
+                rond_bleu(c,l)
             elif g[l][c]==2:
-                up()
-                goto(50*c,50*l)
-                down()
-                rond_rouge()
+                carre_blanc(c,l)
+                rond_rouge(c,l)
         
 #Place un rond bleu
-def rond_bleu():
+                
+def carre_blanc(c,l):
+    up()
+    goto(50*c,50*l)
+    down()
+    fillcolor('white')
+    begin_fill()
+    backward(20)
+    for i in range(4):
+        forward(40)
+        left(90)
+    end_fill()
+
+def rond_bleu(c,l):
+    up()
+    goto(50*c,50*l)
+    down()
     fillcolor('blue')
     begin_fill()
     circle(20,360)
     end_fill()
 
-def carrer_gris():
+def carre_gris(c,l):
+    up()
+    goto(50*c,50*l)
+    down()
     fillcolor('grey')
     begin_fill()
     backward(20)
@@ -46,7 +58,10 @@ def carrer_gris():
     end_fill()
 
 #place un rond rouge
-def rond_rouge():
+def rond_rouge(c,l):
+    up()
+    goto(50*c,50*l)
+    down()
     fillcolor('red')
     begin_fill()
     circle(20,360)
@@ -72,7 +87,7 @@ def jouer(g,j,c):
                 
     #Horizontale
 def horiz(g,j,l,c):
-    if c < 3:
+    if c < 4:
         if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
             return True
     
@@ -111,15 +126,17 @@ def match_nul(g,j):
 def coup_joueur(g,j):
     c=int(numinput(("joueur",j),"entrez une colonne : "))
     while coup_possible(g,c) == False:
-        c=int(numinput(("joueur",j),"entrez une colonne : "))
         print("coup impossible !")
+        c=int(numinput(("joueur",j),"entrez une colonne : "))
+        
     jouer(g,j,c)
         
             
     
 #programme principal
+speed(0)
 g=grille_vide()
-affiche(g)
+grille_grise(g)
 j=2
 while victoire(g,j) != True and match_nul(g,j)==False:
     j=3-j
