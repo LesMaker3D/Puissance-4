@@ -155,8 +155,9 @@ while restartGame:
     speed(0)
     modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
     while modeGame <0 or modeGame >2:
-        modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
         print("Mode de jeu invalide")
+        modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
+        
         
     g=grille_vide()
     grille_grise(g)
