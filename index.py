@@ -29,7 +29,7 @@ def carre_blanc(c,l):
     up()
     goto(50*c,50*l)
     down()
-    fillcolor('white')
+    color('white')
     begin_fill()
     backward(20)
     for i in range(4):
@@ -137,6 +137,7 @@ def coup_joueur(g,j):
         
     jouer(g,j,c)
 
+    #coup aléatoire
 def coup_aleatoire(g,j):
     c = randint(1,7)
     while coup_possible(g,c) == False:
@@ -147,11 +148,16 @@ def coup_aleatoire(g,j):
 #programme principal
 restartGame = 1
 while restartGame:
+    title("puissance 4")
     hideturtle()
     clear()
     color('black')
     speed(0)
     modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
+    while modeGame <0 or modeGame >2:
+        modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
+        print("Mode de jeu invalide")
+        
     g=grille_vide()
     grille_grise(g)
     j=2
