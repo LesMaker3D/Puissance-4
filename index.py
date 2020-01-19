@@ -151,13 +151,17 @@ while restartGame:
     title("puissance 4")
     hideturtle()
     clear()
-    color('black')
     speed(0)
     modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
     while modeGame <0 or modeGame >2:
+        clear()
+        style = ('Courier', 20, 'bold')
+        color('red')
+        write('Mode de jeu impossible ! ', font=style, align='center')
         modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
         print("Mode de jeu invalide")
-        
+    clear() 
+    color('black')
     g=grille_vide()
     grille_grise(g)
     j=2
@@ -168,10 +172,17 @@ while restartGame:
         elif (modeGame == 1 and j != 1) or (modeGame == 0):
             coup_aleatoire(g,j)
         affiche(g) 
+    goto(0,0)
     clear()
     color('blue')
     style = ('Courier', 20, 'bold')
     write('Victoire du joueur: '+ str(j) + '!', font=style, align='center')
     restartGame = int(numinput(("Redémarrage de la partie"),"Souhaitez-vous recommencer une partie ? (1 = Oui, 2 = Non)"))
-    if (restartGame != 1):
+    if (restartGame == 2):
         quit()
+    while (restartGame < 1 or restartGame > 2): 
+        color('red')
+        clear()
+        style = ('Courier', 20, 'bold')
+        write('Valeur non autorisé ! ', font=style, align='center')
+        restartGame = int(numinput(("Redémarrage de la partie"),"Souhaitez-vous recommencer une partie ? (1 = Oui, 2 = Non)"))
