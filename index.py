@@ -130,18 +130,18 @@ def match_nul(g,j):
 #coup joueur       
 def coup_joueur(g,j):
     c = 0
-    if (modeGame == 2) or (modeGame == 1 and j == 1):
+    c=int(numinput(("joueur",j),"entrez une colonne : "))
+    while coup_possible(g,c) == False:
+        print("coup impossible !")
         c=int(numinput(("joueur",j),"entrez une colonne : "))
-        while coup_possible(g,c) == False:
-            print("coup impossible !")
-            c=int(numinput(("joueur",j),"entrez une colonne : "))
-    elif (modeGame == 1 and j != 1) or (modeGame == 0):
-        c = randint(1,7)
-        while coup_possible(g,c) == False:
-            c = randint(1,7)
         
     jouer(g,j,c)
-        
+
+def coup_aleatoire(g,j):
+    c = randint(1,7)
+    while coup_possible(g,c) == False:
+        c = randint(1,7)
+    jouer(g,j,c)
             
 
 #programme principal
@@ -157,7 +157,10 @@ while restartGame:
     j=2
     while victoire(g,j) != True and match_nul(g,j)==False:
         j=3-j
-        coup_joueur(g,j)
+        if (modeGame == 2) or (modeGame == 1 and j == 1):
+            coup_joueur(g,j)
+        elif (modeGame == 1 and j != 1) or (modeGame == 0):
+            coup_aleatoire(g,j)
         affiche(g) 
     clear()
     color('blue')
