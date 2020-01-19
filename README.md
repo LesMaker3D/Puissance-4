@@ -1,7 +1,7 @@
 # Puissance-4
 Puissance 4 Pierre et Damien
 
-<strong>Démarche pour le projet : <strong>
+<strong>Démarche pour le projet : </strong>
   Nous avons commencé par analyser le cahier des charges, une fois celui-ci analysé nous nous sommes répartit les tâches et avons réalisé les fonctions nécessaires au fonctionnement du programme en python. Une fois celles-ci créées nous les avons vérifiés avec de multiples tests. Enfin nous avons réalisé le programme principal regroupant toutes les fonctions créées au paravent. Ensuite, nous avons réalisé des améliorations comme la création d’une interface graphique avec le module turtle ou bien la création d’un ordinateur que peut affronter l’utilisateur.
 Pour communiquer entre nous et partager les programmes et différents fichiers, nous avons utiliser les site internet github.com et le logiciel Discord.
 
