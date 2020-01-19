@@ -159,7 +159,6 @@ while restartGame:
         color('red')
         write('Mode de jeu impossible ! ', font=style, align='center')
         modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
-        print("Mode de jeu invalide")
     clear() 
     color('black')
     g=grille_vide()
