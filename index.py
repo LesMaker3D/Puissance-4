@@ -1,6 +1,6 @@
 #Puissance 4
-from random import randint
 from turtle import *
+from random import randint
 
 #Crée une grille vide
 def grille_vide():
@@ -124,23 +124,40 @@ def match_nul(g,j):
         
 #coup joueur       
 def coup_joueur(g,j):
-    c=int(numinput(("joueur",j),"entrez une colonne : "))
-    while coup_possible(g,c) == False:
-        print("coup impossible !")
+    c = 0
+    if (modeGame == 2) or (modeGame == 1 and j == 1):
         c=int(numinput(("joueur",j),"entrez une colonne : "))
+        while coup_possible(g,c) == False:
+            print("coup impossible !")
+            c=int(numinput(("joueur",j),"entrez une colonne : "))
+    elif (mode == 1 and j != 1) or (modeGame == 0):
+        c = randint(1,7)
+        while coup_possible(g,c) == False:
+            c = randint(1,7)
         
     jouer(g,j,c)
         
             
-    
+
 #programme principal
-speed(0)
-g=grille_vide()
-grille_grise(g)
-j=2
-while victoire(g,j) != True and match_nul(g,j)==False:
-    j=3-j
-    coup_joueur(g,j)
-    affiche(g)
-    
-print("victoire du joueur",j,"!")
+restartGame = 1
+while restartGame:
+    clear()
+    color('black')
+    speed(0)
+    modeGame = int(numinput(("Mode de Jeux"),"Entrez le mode de jeux voulu (cf: Mode d'emploi) : "))
+    g=grille_vide()
+    grille_grise(g)
+    j=2
+    while victoire(g,j) != True and match_nul(g,j)==False:
+        j=3-j
+        coup_joueur(g,j)
+        affiche(g) 
+    clear()
+    color('blue')
+    style = ('Courier', 30, 'bold')
+    write('Victoire du joueur: '+ str(j) + '!', font=style, align='center')
+    hideturtle()
+    restartGame = int(numinput(("Redémarrage de la partie"),"Souhaitez-vous recommencer une partie ? (1 = Oui, 2 = Non)"))
+    if (restartGame != 1):
+        quit()
