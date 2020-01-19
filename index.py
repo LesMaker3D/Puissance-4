@@ -6,6 +6,7 @@ from random import randint
 def grille_vide():
     return [[0]*7 for i in range(6)]
 
+#affiche une grille remplie de carrés gris 
 def grille_grise(g):
     for l in range(6):
         for c in range(7):
@@ -21,9 +22,9 @@ def affiche(g):
             elif g[l][c]==2:
                 carre_blanc(c,l)
                 rond_rouge(c,l)
-        
-#Place un rond bleu
-                
+      
+
+#Place un carré blanc                
 def carre_blanc(c,l):
     up()
     goto(50*c,50*l)
@@ -36,6 +37,8 @@ def carre_blanc(c,l):
         left(90)
     end_fill()
 
+#Place un rond bleu
+
 def rond_bleu(c,l):
     up()
     goto(50*c,50*l)
@@ -44,6 +47,8 @@ def rond_bleu(c,l):
     begin_fill()
     circle(20,360)
     end_fill()
+
+#Place un carré gris
 
 def carre_gris(c,l):
     up()
@@ -57,7 +62,7 @@ def carre_gris(c,l):
         left(90)
     end_fill()
 
-#place un rond rouge
+#Place un rond rouge
 def rond_rouge(c,l):
     up()
     goto(50*c,50*l)
@@ -85,25 +90,25 @@ def jouer(g,j,c):
         l +=1
     g[l][c-1] = j  
                 
-    #Horizontale
+# Vérification Horizontale
 def horiz(g,j,l,c):
     if c < 4:
         if g[l][c] == j and g[l][c+1]== j and g[l][c+2]== j and g[l][c+3]== j:
             return True
     
-#verticale
+#Vérification Verticale
 def vert(g,j,l,c):
     if l < 3:
         if g[l][c] == j and g[l+1][c]== j and g[l+2][c]== j and g[l+3][c]== j:
             return True
     
-#diagonale haut                
+#Vérification diagonaleshaut                
 def diag_haut(g,j,l,c):
     if l < 3 and c < 4:
         if g[l][c] == j and g[l+1][c+1]== j and g[l+2][c+2]== j and g[l+3][c+3]== j:
             return True
     
-#diagonale bas 
+#Vérification diagonales bas 
 def diag_bas(g,j,l,c):
     if l > 2 and c < 4:
         if g[l][c] == j and g[l-1][c+1]== j and g[l-2][c+2]== j and g[l-3][c+3]== j:
@@ -142,10 +147,11 @@ def coup_joueur(g,j):
 #programme principal
 restartGame = 1
 while restartGame:
+    hideturtle()
     clear()
     color('black')
     speed(0)
-    modeGame = int(numinput(("Mode de Jeux"),"Entrez le mode de jeux voulu (cf: Mode d'emploi) : "))
+    modeGame = int(numinput(("Mode de Jeu"),"Entrez le mode de jeu voulu (cf: Mode d'emploi) : "))
     g=grille_vide()
     grille_grise(g)
     j=2
@@ -155,9 +161,8 @@ while restartGame:
         affiche(g) 
     clear()
     color('blue')
-    style = ('Courier', 30, 'bold')
+    style = ('Courier', 20, 'bold')
     write('Victoire du joueur: '+ str(j) + '!', font=style, align='center')
-    hideturtle()
     restartGame = int(numinput(("Redémarrage de la partie"),"Souhaitez-vous recommencer une partie ? (1 = Oui, 2 = Non)"))
     if (restartGame != 1):
         quit()
