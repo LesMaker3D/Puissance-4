@@ -130,7 +130,7 @@ def coup_joueur(g,j):
         while coup_possible(g,c) == False:
             print("coup impossible !")
             c=int(numinput(("joueur",j),"entrez une colonne : "))
-    elif (mode == 1 and j != 1) or (modeGame == 0):
+    elif (modeGame == 1 and j != 1) or (modeGame == 0):
         c = randint(1,7)
         while coup_possible(g,c) == False:
             c = randint(1,7)
